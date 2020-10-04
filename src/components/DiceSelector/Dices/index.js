@@ -1,10 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import "./Dices.scss";
 
-const Dice = ({ type, chooseDice, onCollect }) => {
+const Dice = ({ type, onCollect }) => {
     return (
         <div onClick={() => {
-            chooseDice(type)
             onCollect(prevState=>({...prevState, type}))
         }}
             className="dice">
@@ -15,17 +14,16 @@ const Dice = ({ type, chooseDice, onCollect }) => {
 };
 
 export default function SelectDice( {onCollect} ) {
-    const [dice, setDice] = useState(null);
 
     return (
         <>
             <div className="dices">
-                <Dice type="4" chooseDice={setDice} onCollect={onCollect}/>
-                <Dice type="8" chooseDice={setDice} onCollect={onCollect}/>
-                <Dice type="12" chooseDice={setDice} onCollect={onCollect}/>
-                <Dice type="100" chooseDice={setDice} onCollect={onCollect}/>
-                <Dice type="10" chooseDice={setDice} onCollect={onCollect}/>
-                <Dice type="20" chooseDice={setDice} onCollect={onCollect}/>
+                <Dice type="4" onCollect={onCollect}/>
+                <Dice type="8" onCollect={onCollect}/>
+                <Dice type="12"  onCollect={onCollect}/>
+                <Dice type="100"  onCollect={onCollect}/>
+                <Dice type="10"  onCollect={onCollect}/>
+                <Dice type="20"  onCollect={onCollect}/>
             </div>
         </>
     );
