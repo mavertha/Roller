@@ -1,0 +1,40 @@
+.dices {
+  display: flex;
+}
+.dice {
+  text-align: center;
+  height: 50px;
+  width: 49px;
+}
+
+.dice-image {
+  background-image: url("https://cdn.shopify.com/s/files/1/0537/1501/products/DD_DiceIcons_Poster1_1024x1024.jpg?v=1503501173");
+  width: 100%;
+  height: 100%;
+}
+
+.dice-d4 {
+  background-position: 122px 125px;
+  background-size: 300%;
+}
+
+.dice-d8 {
+  background-position: 122px 125px;
+  background-size: 300%;
+}
+.dice-d12 {
+  background-position: 122px 125px;
+  background-size: 300%;
+}
+.dice-d100 {
+  background-position: 122px 125px;
+  background-size: 300%;
+}
+.dice-d10 {
+  background-position: 122px 125px;
+  background-size: 300%;
+}
+.dice-d20 {
+  background-position: 122px 125px;
+  background-size: 300%;
+}

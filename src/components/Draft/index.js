@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./Draft.scss";
-// import DiceSelector from "../DiceSelector/index";
+// import DiceGenerator from "../DiceGenerator/index";
 
 export default function Draft() {
     const [dice, setResults] = useState(false);
@@ -23,8 +23,6 @@ export default function Draft() {
     return (
         <>
         <button onClick={handleClick}>D20</button>
-
-
         </>
     )
 

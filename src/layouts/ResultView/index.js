@@ -1,5 +1,5 @@
 //Powinien składać się z:
-//1. Element "DiceSelector"
+//1. Element "DiceGenerator"
 //2. Element do wyśiwtelania wyników
 //3. Btn Save - odpala widok ResultSave
 //4. Btn Clear - czyści element z wyświetlonych wyników

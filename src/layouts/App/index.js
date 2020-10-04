@@ -1,29 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.scss';
 // import {HashRouter as Router, Route, Switch} from "react-router-dom";
-import DiceSelector from "../DiceSelector";
 import ResultSave from "../ResultSave";
-import ResultView from "../ResultView";
 import Search from "../Search";
-
-//widok całej aplikacji, tutaj wszystkie importy + routing
-//1. DiceSelector
-//2. Search
-//3. ResultView
-//4. ResultSave
+import DiceGenerator from "../../components/DiceSelector/DiceGenerator";
+import ShowResult from "../../components/ResultView/ShowResult";
 
 function App() {
+   const [throwData, setThrowData] = useState({
+       type: null,
+       amount: 1,
+       modifier: 0
+   })
+
+  const [allRolls,setAllRolls] =  useState([]);
+
+  const handleRoll = () => {
+      fetch(`http://roll.diceapi.com/json/${Number(throwData.amount)}d${throwData.type}`)
+          .then(response => response.json())
+          .then(response => {
+              setAllRolls(prevState=>[{response:response.dice,data:throwData},...prevState])
+          });
+  }
+
+  const handleClear = () => {
+      setThrowData({
+          type: null,
+          amount: 1,
+          modifier: 0
+      })
+  }
+
   return (
     // <Router>
     //   <Switch>
-    //     <Route exact path="/" component={DiceSelector}/>
+    //     <Route exact path="/" component={DiceGenerator}/>
     //   </Switch>
     // </Router>
       <>
-          <DiceSelector />
-          <Search />
-          <ResultView />
+          <DiceGenerator onCollect={setThrowData} throwData={throwData}/>
+          <button onClick={handleRoll}>Roll</button>
+          <button onClick={handleClear}>Clear</button>
+
+          <ShowResult allRolls={allRolls} />
           <ResultSave />
+          <Search />
       </>
   );
 }
