@@ -20,10 +20,10 @@ export default function SelectDice( {onCollect} ) {
             <div className="dices">
                 <Dice type="4" onCollect={onCollect}/>
                 <Dice type="8" onCollect={onCollect}/>
-                <Dice type="12"  onCollect={onCollect}/>
-                <Dice type="100"  onCollect={onCollect}/>
-                <Dice type="10"  onCollect={onCollect}/>
-                <Dice type="20"  onCollect={onCollect}/>
+                <Dice type="12" onCollect={onCollect}/>
+                <Dice type="100" onCollect={onCollect}/>
+                <Dice type="10" onCollect={onCollect}/>
+                <Dice type="20" onCollect={onCollect}/>
             </div>
         </>
     );

@@ -16,10 +16,11 @@ function App() {
   const [allRolls,setAllRolls] =  useState([]);
 
   const handleRoll = () => {
-      fetch(`http://roll.diceapi.com/json/${Number(throwData.amount)}d${throwData.type}`)
+      fetch(`https://rolz.org/api/?${Number(throwData.amount)}d${throwData.type}.json`)
           .then(response => response.json())
           .then(response => {
-              setAllRolls(prevState=>[{response:response.dice,data:throwData},...prevState])
+              let formatReturn = response.details.replace(/['('|')' ]/g,'').split("+")
+              setAllRolls(prevState=>[{response:formatReturn, data:throwData},...prevState])
           });
   }
 

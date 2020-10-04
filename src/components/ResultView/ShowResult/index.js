@@ -9,8 +9,8 @@ export default function ShowResult( {allRolls} ) {
                 {allRolls.map((diceRolls,i)=>
                     <p key={i}>
                         <span>{diceRolls.data.type?"D"+diceRolls.data.type + " ":"results..."}</span>
-                        {diceRolls.response.length>0&&diceRolls.response.map((roll,i)=><span key={i}>{roll.value},</span>)}
-                        {diceRolls.response.length>0&&"Suma: "+diceRolls.response.reduce((acc,currRoll)=>acc+currRoll.value,Number(diceRolls.data.modifier))}
+                        {diceRolls.response.length>0&&diceRolls.response.map((roll,i)=><span key={i}>{roll},</span>)}
+                        {diceRolls.response.length>0&&"Suma: "+diceRolls.response.reduce((acc,currRoll)=>acc+Number(currRoll),Number(diceRolls.data.modifier))}
                     </p>)}
 
 
@@ -18,7 +18,3 @@ export default function ShowResult( {allRolls} ) {
         </>
     )
 }
-
-// <ul>
-//     {data.map(({type, amount, modifier}, i) => <li key={i}> Dice {type} amount {amount} mod {modifier} </li>)}
-// </ul>
