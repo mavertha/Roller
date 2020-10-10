@@ -16,13 +16,15 @@ function App() {
     const [showForm, setShowForm] = useState(false);
     const [date, setDate] = useState("");
     const [text, setText] = useState("");
-    const dataFromLocalStorage = JSON.parse(localStorage.getItem('history'));
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem('history')) || [];
     const [allHistory, setAllHistory] = useState([...dataFromLocalStorage]);
     const [showHistoryDetails, setShowHistoryDetails] = useState(false);
-
+    const [disallowSearch, setDisallowSearch] = useState(false)
     const handleSearch = () => {
+        setDisallowSearch(true)
         let filteredHistory = allHistory.filter((item) => {
             if (date === "") {
+                // console.log("Szukam: ",text, " w stringu: ",item.name)
                 return item.name.includes(text);
             } else if (text === "") {
                 return item.date === date;
@@ -38,6 +40,7 @@ function App() {
         setDate("");
         setText("");
         setAllHistory([...dataFromLocalStorage]);
+        setDisallowSearch(false)
     }
     const handleShow = () => {
         setShowForm(true);
@@ -70,8 +73,6 @@ function App() {
                 <div>
                     <button onClick={handleShow}>Search for previous results</button>
                     {showForm && <div>
-
-
                         <input
                             type="date"
                             value={date}
@@ -82,7 +83,7 @@ function App() {
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                         />
-                        <button onClick={handleSearch}>Search</button>
+                        <button disabled={disallowSearch} onClick={handleSearch}>Search</button>
                         <button onClick={handleClearHistoryForm}>Clear</button>
                     </div>}
                 </div>
@@ -90,7 +91,7 @@ function App() {
             </section>
             <section className={"roller__results"}>
                 {!showHistoryDetails&& <ShowResult allRolls={allRolls} setAllRolls={setAllRolls}/>}
-                {showHistoryDetails && <HistoryDetails allHistory={allHistory} onClose={setShowHistoryDetails} />}
+                {showHistoryDetails && <HistoryDetails allHistory={allHistory} onClose={setShowHistoryDetails} setDisallowSearch={setDisallowSearch} />}
             </section>
         </div>
     );
