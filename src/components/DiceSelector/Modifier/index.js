@@ -15,7 +15,9 @@ export default function Modifier( {onCollect, modifier} ) {
             <h1>Modifier</h1>
             <button onClick={handlePlus}>+</button>
             <label>Modifier</label>
-            <input value={modifier} onChange={(e) => {
+            <input
+                value={modifier}
+                onChange={(e) => {
                 let modifier = e.target.value
                 onCollect(prevState => ({...prevState, modifier}))
             }}/>

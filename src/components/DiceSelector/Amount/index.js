@@ -22,7 +22,9 @@ export default function Amount( {onCollect, amount} ) {
             <h1>Amount</h1>
             <button onClick={handlePlus}>+</button>
             <label>Amount</label>
-            <input value={amount} onChange={(e) => {
+            <input
+                value={amount}
+                onChange={(e) => {
                 const amount = e.target.value.replace(/[^\d]/,'');
                     onCollect(prevState => ({...prevState, amount}))
             }}/>
