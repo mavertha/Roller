@@ -1,7 +1,12 @@
 import React from "react";
 import ShowHistoryRolls from "../ShowHistoryRolls";
 
-export default function HistoryDetails( {allHistory,onClose} ) {
+export default function HistoryDetails( {allHistory, onClose, setDisallowSearch} ) {
+    const handleClearHistory = () => {
+        onClose(false)
+        setDisallowSearch(false)
+    }
+
     return (
         <>
             <h1>History results</h1>
@@ -21,8 +26,7 @@ export default function HistoryDetails( {allHistory,onClose} ) {
                     })}
                 </ul>
             </div>
-            <button onClick={()=>onClose(false)}>close history</button>
-
+            <button onClick={handleClearHistory}>Close history</button>
         </>
     )
 }
