@@ -10,14 +10,7 @@ export default function SaveResults( {allRolls} ) {
             name: userName,
             entry: allRolls
         }
-        // if (localStorage.getItem('history') === null) {
-        //     localStorage.setItem('history', JSON.stringify(objectToLocalStorage));
-        // } else {
-        //     localStorage.setItem('history', localStorage.getItem('history') + "," + JSON.stringify(objectToLocalStorage));
-        // }
-
-        var array = [];
-        array = JSON.parse(localStorage.getItem('history')) || [];
+        let array = JSON.parse(localStorage.getItem('history')) || [];
         array.push(objectToLocalStorage);
         localStorage.setItem('history', JSON.stringify(array));
     }
