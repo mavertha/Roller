@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import './App.scss';
 // import {HashRouter as Router, Route, Switch} from "react-router-dom";
-import ResultSave from "../ResultSave";
-import Search from "../Search";
+
 import DiceGenerator from "../../components/DiceSelector/DiceGenerator";
 import ShowResult from "../../components/ResultView/ShowResult";
+import SearchButton from "../../components/Search/SearchButton";
 
 function App() {
    const [throwData, setThrowData] = useState({
@@ -13,7 +13,7 @@ function App() {
        modifier: 0
    })
 
-  const [allRolls,setAllRolls] =  useState([]);
+  const [allRolls, setAllRolls] =  useState([]);
 
   const handleRoll = () => {
       fetch(`https://rolz.org/api/?${Number(throwData.amount)}d${throwData.type}.json`)
@@ -39,13 +39,11 @@ function App() {
     //   </Switch>
     // </Router>
       <>
-          <DiceGenerator onCollect={setThrowData} throwData={throwData}/>
+          <DiceGenerator onCollect={setThrowData} throwData={throwData} />
           <button onClick={handleRoll}>Roll</button>
           <button onClick={handleClear}>Clear</button>
-
-          <ShowResult allRolls={allRolls} />
-          <ResultSave />
-          <Search />
+          <ShowResult allRolls={allRolls} setAllRolls={setAllRolls} />
+          <SearchButton />
       </>
   );
 }
