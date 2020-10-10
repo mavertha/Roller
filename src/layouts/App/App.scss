@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+
+
+// Roller
+.roller{
+  display: flex;
+  width: 100%;
+  .roller__dices{
+    width: 50%;
+  }
+  .roller__results{
+    width: 50%;
+  }
+}
