@@ -4,7 +4,12 @@ import "./Amount.scss";
 export default function Amount( {onCollect, amount} ) {
 
     const handlePlus = () => {
-        onCollect(prevState => ({...prevState, amount: prevState.amount + 1}))
+        if (amount < 10) {
+            onCollect(prevState => ({...prevState, amount: prevState.amount + 1}));
+        }
+        else {
+            console.log("You can choose max. 10 dices");
+        }
     }
 
     const handleMinus = () => {
@@ -12,6 +17,7 @@ export default function Amount( {onCollect, amount} ) {
             let newValue = prevState.amount - 1
             if (newValue <= 0) {
                 newValue = 1
+                console.log("You must choose min. 1 dice");
             }
             return ({...prevState, amount: newValue})
         })
@@ -26,7 +32,11 @@ export default function Amount( {onCollect, amount} ) {
                 value={amount}
                 onChange={(e) => {
                 const amount = e.target.value.replace(/[^\d]/,'');
-                    onCollect(prevState => ({...prevState, amount}))
+                    if (amount > 10) {
+                        console.log("You can choose max. 10 dices");
+                    } else {
+                        onCollect(prevState => ({...prevState, amount}));
+                    }
             }}/>
             <button onClick={handleMinus}>-</button>
         </>

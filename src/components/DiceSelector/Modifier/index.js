@@ -3,11 +3,20 @@ import "./Modifier.scss";
 
 export default function Modifier( {onCollect, modifier} ) {
     const handlePlus = () => {
-        onCollect(prevState=>({...prevState, modifier: prevState.modifier + 1}))
+        if (modifier < 10) {
+            onCollect(prevState=>({...prevState, modifier: prevState.modifier + 1}));
+        } else {
+            console.log("Modifier can't be higher than 10");
+        }
     }
 
     const handleMinus = () => {
-        onCollect(prevState => ({...prevState, modifier: prevState.modifier - 1}))
+        if (modifier > -10) {
+            onCollect(prevState => ({...prevState, modifier: prevState.modifier - 1}));
+        }
+        else {
+            console.log("Modifier can't be lower than -10");
+        }
     }
 
     return (
@@ -19,7 +28,11 @@ export default function Modifier( {onCollect, modifier} ) {
                 value={modifier}
                 onChange={(e) => {
                 let modifier = e.target.value
-                onCollect(prevState => ({...prevState, modifier}))
+                    if (modifier > 10 || modifier < -10 || /^[a-zA-Z]+$/.test(modifier)) {
+                        console.log("Modifier must a number between -10 and 10");
+                    } else {
+                        onCollect(prevState => ({...prevState, modifier}));
+                    }
             }}/>
             <button onClick={handleMinus}>-</button>
         </>

@@ -1,10 +1,13 @@
 import React from "react";
 import ShowHistoryRolls from "../ShowHistoryRolls";
 
-export default function HistoryDetails( {allHistory, onClose, setDisallowSearch} ) {
+export default function HistoryDetails( {allHistory, onClose, setDisallowSearch, setDate, setText, setAllHistory, dataFromLocalStorage} ) {
     const handleClearHistory = () => {
-        onClose(false)
-        setDisallowSearch(false)
+        onClose(false);
+        setDisallowSearch(false);
+        setDate("");
+        setText("");
+        setAllHistory([...dataFromLocalStorage]);
     }
 
     return (

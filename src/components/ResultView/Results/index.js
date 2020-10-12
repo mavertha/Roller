@@ -1,7 +1,7 @@
 import React from "react";
 import SaveResults from "../../SaveResults";
 
-export default function Results( {handleClear, handleSave, allRolls, showSaveResult} ) {
+export default function Results( {handleClear, handleSave, allRolls, showSaveResult, setAllHistory, setAllRolls, disallowSave} ) {
     return (
         <>
             <h1>Result</h1>
@@ -14,8 +14,8 @@ export default function Results( {handleClear, handleSave, allRolls, showSaveRes
                     </p>)}
             </div>
             <button onClick={handleClear}>Clear</button>
-            <button onClick={handleSave}>Save</button>
-            {showSaveResult && <SaveResults allRolls={allRolls} />}
+            <button onClick={handleSave} disabled={disallowSave}>Save</button>
+            {showSaveResult && <SaveResults allRolls={allRolls} setAllHistory={setAllHistory} setAllRolls={setAllRolls}/>}
         </>
     )
 }

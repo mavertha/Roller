@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import './App.scss';
-
 import DiceGenerator from "../../components/DiceSelector/DiceGenerator";
 import ShowResult from "../../components/ResultView/ShowResult";
-
 import HistoryDetails from "../../components/Search/HistoryDetails";
 
 function App() {
@@ -19,39 +17,50 @@ function App() {
     const dataFromLocalStorage = JSON.parse(localStorage.getItem('history')) || [];
     const [allHistory, setAllHistory] = useState([...dataFromLocalStorage]);
     const [showHistoryDetails, setShowHistoryDetails] = useState(false);
-    const [disallowSearch, setDisallowSearch] = useState(false)
+    const [disallowSearch, setDisallowSearch] = useState(false);
+    const [disallowSave, setDisallowSave] = useState(true);
     const handleSearch = () => {
-        setDisallowSearch(true)
-        let filteredHistory = allHistory.filter((item) => {
-            if (date === "") {
-                // console.log("Szukam: ",text, " w stringu: ",item.name)
-                return item.name.includes(text);
-            } else if (text === "") {
-                return item.date === date;
-            } else {
-                return item.name.includes(text) && item.date === date;
-            }
-        });
-        setAllHistory([...filteredHistory]);
-        setShowHistoryDetails(true);
+        if (date !== "" || text !== "") {
+            setDisallowSearch(true)
+            let filteredHistory = allHistory.filter((item) => {
+                if (date === "") {
+                    return item.name.includes(text);
+                } else if (text === "") {
+                    let dateFormatModified = date.slice(8, 10) + "." + date.slice(5, 7) + "." + date.slice(0, 4);
+                    return item.date === dateFormatModified;
+                } else {
+                    return item.name.includes(text) && item.date === date;
+                }
+            });
+            setAllHistory([...filteredHistory]);
+            setShowHistoryDetails(true);
+        } else {
+            console.log("Enter search parameter");
+        }
     }
 
     const handleClearHistoryForm = () => {
         setDate("");
         setText("");
         setAllHistory([...dataFromLocalStorage]);
-        setDisallowSearch(false)
+        setDisallowSearch(false);
+        setShowHistoryDetails(false);
     }
     const handleShow = () => {
         setShowForm(true);
     }
     const handleRoll = () => {
-        fetch(`https://rolz.org/api/?${Number(throwData.amount)}d${throwData.type}.json`)
-            .then(response => response.json())
-            .then(response => {
-                let formatReturn = response.details.replace(/['('|')' ]/g, '').split("+")
-                setAllRolls(prevState => [{response: formatReturn, data: throwData}, ...prevState])
-            });
+        if (throwData.type === null || throwData.amount < 1) {
+            console.log("You must choose dice type and amount");
+        } else {
+            fetch(`https://rolz.org/api/?${Number(throwData.amount)}d${throwData.type}.json`)
+                .then(response => response.json())
+                .then(response => {
+                    let formatReturn = response.details.replace(/['('|')' ]/g, '').split("+")
+                    setAllRolls(prevState => [{response: formatReturn, data: throwData}, ...prevState])
+                });
+            setDisallowSave(false);
+        }
     }
 
     const handleClearSelection = () => {
@@ -87,11 +96,12 @@ function App() {
                         <button onClick={handleClearHistoryForm}>Clear</button>
                     </div>}
                 </div>
-
             </section>
+
             <section className={"roller__results"}>
-                {!showHistoryDetails&& <ShowResult allRolls={allRolls} setAllRolls={setAllRolls}/>}
-                {showHistoryDetails && <HistoryDetails allHistory={allHistory} onClose={setShowHistoryDetails} setDisallowSearch={setDisallowSearch} />}
+                {!showHistoryDetails&& <ShowResult allRolls={allRolls} setAllRolls={setAllRolls} setAllHistory={setAllHistory} disallowSave={disallowSave}/>}
+                {showHistoryDetails && <HistoryDetails allHistory={allHistory} onClose={setShowHistoryDetails} setDisallowSearch={setDisallowSearch}
+                setDate={setDate} setText={setText} setAllHistory={setAllHistory} dataFromLocalStorage={dataFromLocalStorage} />}
             </section>
         </div>
     );
