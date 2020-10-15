@@ -1,4 +1,5 @@
 import React from "react";
+import "./HistoryDetails.scss";
 import ShowHistoryRolls from "../ShowHistoryRolls";
 
 export default function HistoryDetails( {allHistory, onClose, setDisallowSearch, setDate, setText, setAllHistory, dataFromLocalStorage} ) {
@@ -11,25 +12,25 @@ export default function HistoryDetails( {allHistory, onClose, setDisallowSearch,
     }
 
     return (
-        <>
-            <h1>History results</h1>
-            <div>
-                <ul>
-                    {allHistory.map((item, i) => {
-                        return (
-                            <li key={i}>
-                                <h3>
-                                    {item.date} {item.name}
-                                </h3>
-                                {item.entry.map((data, i) => (
-                                    <ShowHistoryRolls key={i} {...data} />
-                                ))}
-                            </li>
-                        );
-                    })}
-                </ul>
+        <div className="roller__results__container">
+            <div className="roller__frame">
+                <h2>History results</h2>
             </div>
-            <button onClick={handleClearHistory}>Close history</button>
-        </>
+            <div className="roller__results__view">
+                {allHistory.map((item, i) => {
+                    return (
+                        <li key={i}>
+                            <h3>
+                                {item.date} - {item.name}
+                            </h3>
+                            {item.entry.map((data, i) => (
+                                <ShowHistoryRolls key={i} {...data} />
+                                ))}
+                        </li>
+                    );
+                })}
+            </div>
+            <button className="history__results__btn" onClick={handleClearHistory}>Close history</button>
+        </div>
     )
 }
