@@ -10,9 +10,42 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: $mainColor;
+  color: $fontColor;
+  font-family: $mainFont;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
+}
+
+button {
+  background-color: $buttonsColor3;
+  color: $fontColor;
+  font-family: $mainFont;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+input {
+  margin: 0.25rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  color: $mainColor;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px $buttonsColor3;
+  }
+}
+
+li {
+  list-style-type: none;
 }
