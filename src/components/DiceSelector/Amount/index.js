@@ -24,21 +24,23 @@ export default function Amount( {onCollect, amount} ) {
     }
 
     return (
-        <>
-            <h1>Amount</h1>
-            <button onClick={handlePlus}>+</button>
-            <label>Amount</label>
-            <input
-                value={amount}
-                onChange={(e) => {
-                const amount = e.target.value.replace(/[^\d]/,'');
-                    if (amount > 10) {
-                        console.log("You can choose max. 10 dices");
-                    } else {
-                        onCollect(prevState => ({...prevState, amount}));
-                    }
-            }}/>
-            <button onClick={handleMinus}>-</button>
-        </>
+        <div className="roller__generator__amount">
+            <span>Amount</span>
+            <div className="amount">
+                <button onClick={handlePlus}>+</button>
+                <input
+                    value={amount}
+                    size={4}
+                    onChange={(e) => {
+                        const amount = e.target.value.replace(/[^\d]/,'');
+                        if (amount > 10) {
+                            console.log("You can choose max. 10 dices");
+                        } else {
+                            onCollect(prevState => ({...prevState, amount}));
+                        }
+                    }}/>
+                <button onClick={handleMinus}>-</button>
+            </div>
+        </div>
     )
 }

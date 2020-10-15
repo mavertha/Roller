@@ -1,40 +1,57 @@
-.dices {
+@import "./src/scss/variables";
+
+.roller__generator__dices {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  height: 5rem;
   display: flex;
 }
+
 .dice {
   text-align: center;
-  height: 50px;
-  width: 49px;
+  width: 14.2%;
 }
 
 .dice-image {
-  background-image: url("https://cdn.shopify.com/s/files/1/0537/1501/products/DD_DiceIcons_Poster1_1024x1024.jpg?v=1503501173");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 100%;
-  height: 100%;
+  height: 80%;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .dice-d4 {
-  background-position: 122px 125px;
-  background-size: 300%;
+  background-image: url("dices/d4.jpg");
+}
+
+.dice-d6 {
+  background-image: url("dices/d6.jpg");
 }
 
 .dice-d8 {
-  background-position: 122px 125px;
-  background-size: 300%;
+  background-image: url("dices/d8.jpg");
 }
-.dice-d12 {
-  background-position: 122px 125px;
-  background-size: 300%;
-}
-.dice-d100 {
-  background-position: 122px 125px;
-  background-size: 300%;
-}
+
 .dice-d10 {
-  background-position: 122px 125px;
-  background-size: 300%;
+  background-image: url("dices/d10.jpg");
 }
+
+.dice-d12 {
+  background-image: url("dices/d12.jpg");
+}
+
 .dice-d20 {
-  background-position: 122px 125px;
-  background-size: 300%;
+  background-image: url("dices/d20.jpg");
+}
+
+.dice-d100 {
+  background-image: url("dices/d100.jpg");
+}
+
+.clicked {
+  border: 1px solid $buttonsColor3;
+  border-radius: 3px;
 }

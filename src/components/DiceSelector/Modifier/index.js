@@ -20,21 +20,23 @@ export default function Modifier( {onCollect, modifier} ) {
     }
 
     return (
-        <>
-            <h1>Modifier</h1>
-            <button onClick={handlePlus}>+</button>
-            <label>Modifier</label>
-            <input
-                value={modifier}
-                onChange={(e) => {
-                let modifier = e.target.value
-                    if (modifier > 10 || modifier < -10 || /^[a-zA-Z]+$/.test(modifier)) {
-                        console.log("Modifier must a number between -10 and 10");
-                    } else {
-                        onCollect(prevState => ({...prevState, modifier}));
-                    }
-            }}/>
-            <button onClick={handleMinus}>-</button>
-        </>
+        <div className="roller__generator__modifier">
+            <span>Modifier</span>
+            <div className="modifier">
+                <button onClick={handlePlus}>+</button>
+                <input
+                    value={modifier}
+                    size={4}
+                    onChange={(e) => {
+                        let modifier = e.target.value
+                        if (modifier > 10 || modifier < -10 || /^[a-zA-Z]+$/.test(modifier)) {
+                            console.log("Modifier must a number between -10 and 10");
+                        } else {
+                            onCollect(prevState => ({...prevState, modifier}));
+                        }
+                    }}/>
+                <button onClick={handleMinus}>-</button>
+            </div>
+        </div>
     )
 }
