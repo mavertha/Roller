@@ -1,0 +1,64 @@
+@import "./src/scss/variables";
+
+.roller__results__container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .roller__results__view {
+    width: 100%;
+    height: 17rem;
+    border: 1px dashed $buttonsColor3;
+    border-radius: 3px;
+    overflow: auto;
+    .roller__single__result {
+      margin: 0.5rem;
+    }
+    span {
+      margin-right: 0.3rem;
+    }
+  }
+  .roller__results__buttons {
+    margin-top: 2rem;
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    button {
+      height: 100%;
+      width: 20%;
+    }
+  }
+}
+
+.text__shadow__span {
+  color: $buttonsColor3;
+  text-shadow: 0 0 0 $fontColor;
+}
+
+.dice__type__d4 {
+  color: $diceD4Color;
+}
+.dice__type__d6 {
+  color: $diceD6Color;
+}
+.dice__type__d8 {
+  color: $diceD8Color;
+}
+.dice__type__d10 {
+  color: $diceD10Color
+}
+.dice__type__d12 {
+  color: $diceD12Color;
+}
+.dice__type__d20 {
+  color: $diceD20Color;
+}
+.dice__type__d100 {
+  color: $diceD100Color;
+}
+
+span[class^="dice__type__"] {
+  font-weight: bold;
+  text-shadow: 0 0 1px #f4f5f9;
+}

@@ -16,7 +16,7 @@ export default function ShowResult( {allRolls, setAllRolls, setAllHistory, disal
     return (
         <>
             <Results handleClear={handleClear} handleSave={handleSave} allRolls={allRolls} showSaveResult={showSaveResult}
-            setAllHistory={setAllHistory} setAllRolls={setAllRolls} disallowSave={disallowSave}/>
+            setAllHistory={setAllHistory} setAllRolls={setAllRolls} disallowSave={disallowSave} setShowSaveResult={setShowSaveResult}/>
         </>
     )
 }
