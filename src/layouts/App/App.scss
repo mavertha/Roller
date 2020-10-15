@@ -1,11 +1,87 @@
 // Roller
-.roller{
-  display: flex;
+@import "./src/scss/variables";
+
+.roller {
   width: 100%;
-  .roller__dices{
-    width: 50%;
+  .roller__frame {
+    width: 100%;
+    height: 2rem;
+    background-color: $buttonsColor3;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
   }
-  .roller__results{
-    width: 50%;
+  .roller__main {
+    display: flex;
+    width: 100%;
+    .roller__generator {
+      width: 50%;
+      height: 100%;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .roller__generator__container {
+        width: 80%;
+      }
+      .roller__generator__search {
+        width: 80%;
+        margin-top: 2rem;
+        .search__main__btn {
+          width: 100%;
+          height: 2rem;
+          font-size: 100%;
+          font-weight: bold;
+        }
+        .roller__search__container {
+          margin-top: 1rem;
+          height: 8rem;
+          display: flex;
+          .roller__search__form {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            .roller__search__name {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .roller__search__date {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            input {
+              width: 70%;
+            }
+          }
+          .roller__search__buttons {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            button {
+              width: 50%;
+              height: 30%;
+            }
+          }
+        }
+      }
+    }
+    .roller__results {
+      width: 50%;
+      height: 100%;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }

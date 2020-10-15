@@ -47,7 +47,7 @@ function App() {
         setShowHistoryDetails(false);
     }
     const handleShow = () => {
-        setShowForm(true);
+        showForm ? setShowForm(false) : setShowForm(true);
     }
     const handleRoll = () => {
         if (throwData.type === null || throwData.amount < 1) {
@@ -72,37 +72,53 @@ function App() {
     }
 
     return (
-        <div className={"roller"}>
-            <section className={"roller__dices"}>
-                <div>
-                    <DiceGenerator onCollect={setThrowData} throwData={throwData}/>
-                    <button onClick={handleRoll}>Roll</button>
-                    <button onClick={handleClearSelection}>Clear</button>
-                </div>
-                <div>
-                    <button onClick={handleShow}>Search for previous results</button>
-                    {showForm && <div>
-                        <input
-                            type="date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            value={text}
-                            onChange={(e) => setText(e.target.value)}
-                        />
-                        <button disabled={disallowSearch} onClick={handleSearch}>Search</button>
-                        <button onClick={handleClearHistoryForm}>Clear</button>
-                    </div>}
-                </div>
-            </section>
+        <div className="roller">
+            <div className="roller__frame" />
+            <main className="roller__main">
+                <section className="roller__generator">
+                    <div className="roller__generator__container">
+                        <div className="roller__frame">
+                            <h2>Select Dice</h2>
+                        </div>
+                        <DiceGenerator onCollect={setThrowData} throwData={throwData} handleRoll={handleRoll} handleClearSelection={handleClearSelection}/>
+                    </div>
+                    <div className="roller__generator__search">
+                        <button onClick={handleShow} className="search__main__btn">Search for previous results</button>
+                        {showForm &&
+                        <div className="roller__search__container">
+                            <div className="roller__search__form">
+                                <div className="roller__search__name">
+                                    <span>Name</span>
+                                    <input
+                                        type="text"
+                                        value={text}
+                                        onChange={(e) => setText(e.target.value)}
+                                    />
+                                </div>
+                                <div className="roller__search__date">
+                                    <span>Date</span>
+                                    <input
+                                        type="date"
+                                        value={date}
+                                        onChange={(e) => setDate(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                           <div className="roller__search__buttons">
+                               <button onClick={handleClearHistoryForm}>Clear</button>
+                               <button disabled={disallowSearch} onClick={handleSearch}>Search</button>
+                           </div>
+                        </div>}
+                    </div>
+                </section>
 
-            <section className={"roller__results"}>
-                {!showHistoryDetails&& <ShowResult allRolls={allRolls} setAllRolls={setAllRolls} setAllHistory={setAllHistory} disallowSave={disallowSave}/>}
-                {showHistoryDetails && <HistoryDetails allHistory={allHistory} onClose={setShowHistoryDetails} setDisallowSearch={setDisallowSearch}
-                setDate={setDate} setText={setText} setAllHistory={setAllHistory} dataFromLocalStorage={dataFromLocalStorage} />}
-            </section>
+                <section className="roller__results">
+                    {!showHistoryDetails&& <ShowResult allRolls={allRolls} setAllRolls={setAllRolls} setAllHistory={setAllHistory} disallowSave={disallowSave}/>}
+                    {showHistoryDetails && <HistoryDetails allHistory={allHistory} onClose={setShowHistoryDetails} setDisallowSearch={setDisallowSearch}
+                     setDate={setDate} setText={setText} setAllHistory={setAllHistory} dataFromLocalStorage={dataFromLocalStorage} />}
+                </section>
+            </main>
+
         </div>
     );
 }
