@@ -1,0 +1,21 @@
+@import "./src/scss/variables";
+
+.roller__save__container {
+  margin-top: 1rem;
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  .roller__save__form {
+    height: 30%;
+    align-items: center;
+  }
+  .roller__save__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 70%;
+    button {
+      height: 40%;
+    }
+  }
+}

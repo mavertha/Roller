@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import "./SaveResults.scss";
 
-export default function SaveResults( {allRolls, setAllHistory, setAllRolls} ) {
+export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setShowSaveResult} ) {
     const [userName, setUserName] = useState('');
 
-    const saveToLocalStorage = (allRolls, setAllHistory) => {
+    const saveToLocalStorage = (allRolls, setAllHistory, setShowSaveResult) => {
         if (userName === "") {
             console.log("Name can't be empty");
         } else {
@@ -20,6 +20,7 @@ export default function SaveResults( {allRolls, setAllHistory, setAllRolls} ) {
             const dataFromLocalStorage = JSON.parse(localStorage.getItem('history')) || [];
             setAllHistory([...dataFromLocalStorage]);
             setAllRolls([]);
+            setShowSaveResult(false);
         }
     }
 
@@ -28,20 +29,23 @@ export default function SaveResults( {allRolls, setAllHistory, setAllRolls} ) {
     }
 
     return (
-        <>
-            <h1>Saving result section</h1>
-            <label>Name</label>
-            <input
-                type="text"
-                maxLength="20"
-                size="10"
-                value={userName}
-                onChange={(e) => {
-                let name = e.target.value
-                setUserName(name);
-            }}/>
-            <button onClick={() => saveToLocalStorage(allRolls, setAllHistory)}>Save current results</button>
-            <button onClick={clearLocalStorage}>Clear all saved results</button>
-        </>
+        <div className="roller__save__container">
+            <div className="roller__save__form">
+                <span>Name</span>
+                <input
+                    type="text"
+                    maxLength="20"
+                    size="18"
+                    value={userName}
+                    onChange={(e) => {
+                        let name = e.target.value
+                        setUserName(name);
+                    }}/>
+            </div>
+            <div className="roller__save__buttons">
+                <button onClick={() => saveToLocalStorage(allRolls, setAllHistory, setShowSaveResult)}>Save current results</button>
+                <button onClick={clearLocalStorage}>Clear all saved results</button>
+            </div>
+        </div>
     )
 }
