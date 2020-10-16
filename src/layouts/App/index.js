@@ -17,11 +17,10 @@ function App() {
     const dataFromLocalStorage = JSON.parse(localStorage.getItem('history')) || [];
     const [allHistory, setAllHistory] = useState([...dataFromLocalStorage]);
     const [showHistoryDetails, setShowHistoryDetails] = useState(false);
-    const [disallowSearch, setDisallowSearch] = useState(false);
+    const [disallowSearch, setDisallowSearch] = useState(true);
     const [disallowSave, setDisallowSave] = useState(true);
     const handleSearch = () => {
         if (date !== "" || text !== "") {
-            setDisallowSearch(true)
             let filteredHistory = allHistory.filter((item) => {
                 if (date === "") {
                     return item.name.includes(text);
@@ -45,6 +44,7 @@ function App() {
         setAllHistory([...dataFromLocalStorage]);
         setDisallowSearch(false);
         setShowHistoryDetails(false);
+        setDisallowSearch(true);
     }
     const handleShow = () => {
         showForm ? setShowForm(false) : setShowForm(true);
@@ -92,7 +92,10 @@ function App() {
                                     <input
                                         type="text"
                                         value={text}
-                                        onChange={(e) => setText(e.target.value)}
+                                        onChange={(e) => {
+                                            setText(e.target.value);
+                                            setDisallowSearch(false);
+                                        }}
                                     />
                                 </div>
                                 <div className="roller__search__date">
@@ -100,7 +103,10 @@ function App() {
                                     <input
                                         type="date"
                                         value={date}
-                                        onChange={(e) => setDate(e.target.value)}
+                                        onChange={(e) => {
+                                            setDate(e.target.value);
+                                            setDisallowSearch(false);
+                                        }}
                                     />
                                 </div>
                             </div>

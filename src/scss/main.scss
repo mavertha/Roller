@@ -31,6 +31,10 @@ button {
   &:focus {
     outline: none;
   }
+  &:disabled {
+    cursor: none;
+    background-color: $disabledColor;
+  }
 }
 
 input {
@@ -49,3 +53,4 @@ input {
 li {
   list-style-type: none;
 }
+

@@ -3,6 +3,7 @@ import "./SaveResults.scss";
 
 export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setShowSaveResult} ) {
     const [userName, setUserName] = useState('');
+    const [disabledSave, setDisabledSave] = useState(true);
 
     const saveToLocalStorage = (allRolls, setAllHistory, setShowSaveResult) => {
         if (userName === "") {
@@ -38,12 +39,13 @@ export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setS
                     size="18"
                     value={userName}
                     onChange={(e) => {
-                        let name = e.target.value
+                        let name = e.target.value;
                         setUserName(name);
+                        setDisabledSave(false);
                     }}/>
             </div>
             <div className="roller__save__buttons">
-                <button onClick={() => saveToLocalStorage(allRolls, setAllHistory, setShowSaveResult)}>Save current results</button>
+                <button disabled={disabledSave} onClick={() => saveToLocalStorage(allRolls, setAllHistory, setShowSaveResult)}>Save current results</button>
                 <button onClick={clearLocalStorage}>Clear all saved results</button>
             </div>
         </div>
