@@ -62,7 +62,6 @@ function App() {
             setDisallowSave(false);
         }
     }
-
     const handleClearSelection = () => {
         setThrowData({
             type: null,
@@ -75,6 +74,7 @@ function App() {
         <div className="roller">
             <div className="roller__frame" />
             <main className="roller__main">
+
                 <section className="roller__generator">
                     <div className="roller__generator__container">
                         <div className="roller__frame">

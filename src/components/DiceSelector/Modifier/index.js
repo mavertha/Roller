@@ -9,7 +9,6 @@ export default function Modifier( {onCollect, modifier} ) {
             console.log("Modifier can't be higher than 10");
         }
     }
-
     const handleMinus = () => {
         if (modifier > -10) {
             onCollect(prevState => ({...prevState, modifier: prevState.modifier - 1}));

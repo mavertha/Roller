@@ -24,7 +24,6 @@ export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setS
             setShowSaveResult(false);
         }
     }
-
     const clearLocalStorage = () => {
         localStorage.clear('history');
     }

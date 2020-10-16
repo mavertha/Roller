@@ -2,7 +2,6 @@ import React from "react";
 import "./Amount.scss";
 
 export default function Amount( {onCollect, amount} ) {
-
     const handlePlus = () => {
         if (amount < 10) {
             onCollect(prevState => ({...prevState, amount: prevState.amount + 1}));
@@ -11,7 +10,6 @@ export default function Amount( {onCollect, amount} ) {
             console.log("You can choose max. 10 dices");
         }
     }
-
     const handleMinus = () => {
         onCollect(prevState => {
             let newValue = prevState.amount - 1
