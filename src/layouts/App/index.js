@@ -19,6 +19,13 @@ function App() {
     const [showHistoryDetails, setShowHistoryDetails] = useState(false);
     const [disallowSearch, setDisallowSearch] = useState(true);
     const [disallowSave, setDisallowSave] = useState(true);
+
+    const [showAlert, setShowAlert] = useState(false);
+    const [messageAlert, setMessageAlert] = useState("");
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
+
     const handleSearch = () => {
         if (date !== "" || text !== "") {
             let filteredHistory = allHistory.filter((item) => {
@@ -33,11 +40,7 @@ function App() {
             });
             setAllHistory([...filteredHistory]);
             setShowHistoryDetails(true);
-        } else {
-            console.log("Enter search parameter");
-        }
-    }
-
+    }}
     const handleClearHistoryForm = () => {
         setDate("");
         setText("");
@@ -51,7 +54,8 @@ function App() {
     }
     const handleRoll = () => {
         if (throwData.type === null || throwData.amount < 1) {
-            console.log("You must choose dice type and amount");
+            setShowAlert(true);
+            setMessageAlert("You must choose dice type and amount");
         } else {
             fetch(`https://rolz.org/api/?${Number(throwData.amount)}d${throwData.type}.json`)
                 .then(response => response.json())
@@ -80,7 +84,8 @@ function App() {
                         <div className="roller__frame">
                             <h2>Select Dice</h2>
                         </div>
-                        <DiceGenerator onCollect={setThrowData} throwData={throwData} handleRoll={handleRoll} handleClearSelection={handleClearSelection}/>
+                        <DiceGenerator onCollect={setThrowData} throwData={throwData} handleRoll={handleRoll} handleClearSelection={handleClearSelection}
+                        showAlert={showAlert} messageAlert={messageAlert} handleCloseAlert={handleCloseAlert} setShowAlert={setShowAlert} setMessageAlert={setMessageAlert}/>
                     </div>
                     <div className="roller__generator__search">
                         <button onClick={handleShow} className="search__main__btn">Search for previous results</button>

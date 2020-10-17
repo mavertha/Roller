@@ -6,23 +6,19 @@ export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setS
     const [disabledSave, setDisabledSave] = useState(true);
 
     const saveToLocalStorage = (allRolls, setAllHistory, setShowSaveResult) => {
-        if (userName === "") {
-            console.log("Name can't be empty");
-        } else {
-            const objectToLocalStorage = {
-                date: new Date().toLocaleDateString(),
-                name: userName,
-                entry: allRolls
-            }
-            let array = JSON.parse(localStorage.getItem('history')) || [];
-            array.push(objectToLocalStorage);
-            localStorage.setItem('history', JSON.stringify(array));
-            setUserName('');
-            const dataFromLocalStorage = JSON.parse(localStorage.getItem('history')) || [];
-            setAllHistory([...dataFromLocalStorage]);
-            setAllRolls([]);
-            setShowSaveResult(false);
+        const objectToLocalStorage = {
+            date: new Date().toLocaleDateString(),
+            name: userName,
+            entry: allRolls
         }
+        let array = JSON.parse(localStorage.getItem('history')) || [];
+        array.push(objectToLocalStorage);
+        localStorage.setItem('history', JSON.stringify(array));
+        setUserName('');
+        const dataFromLocalStorage = JSON.parse(localStorage.getItem('history')) || [];
+        setAllHistory([...dataFromLocalStorage]);
+        setAllRolls([]);
+        setShowSaveResult(false);
     }
     const clearLocalStorage = () => {
         localStorage.clear('history');

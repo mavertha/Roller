@@ -5,10 +5,10 @@ import ShowHistoryRolls from "../ShowHistoryRolls";
 export default function HistoryDetails( {allHistory, onClose, setDisallowSearch, setDate, setText, setAllHistory, dataFromLocalStorage} ) {
     const handleClearHistory = () => {
         onClose(false);
-        setDisallowSearch(false);
         setDate("");
         setText("");
         setAllHistory([...dataFromLocalStorage]);
+        setDisallowSearch(true);
     }
 
     if (allHistory.length === 0) {

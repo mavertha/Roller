@@ -1,21 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Amount.scss";
 
 export default function Amount( {onCollect, amount} ) {
+    const [messageAlert, setMessageAlert] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
+
     const handlePlus = () => {
         if (amount < 10) {
             onCollect(prevState => ({...prevState, amount: prevState.amount + 1}));
         }
         else {
-            console.log("You can choose max. 10 dices");
+            setShowAlert(true);
+            setMessageAlert("You can choose max. 10 dices");
         }
     }
     const handleMinus = () => {
         onCollect(prevState => {
             let newValue = prevState.amount - 1
             if (newValue <= 0) {
-                newValue = 1
-                console.log("You must choose min. 1 dice");
+                newValue = 1;
+                setShowAlert(true);
+                setMessageAlert("You must choose min. 1 dice");
             }
             return ({...prevState, amount: newValue})
         })
@@ -25,6 +33,11 @@ export default function Amount( {onCollect, amount} ) {
         <div className="roller__generator__amount">
             <span>Amount</span>
             <div className="amount">
+                {showAlert &&
+                <div className="alert__box">
+                    <p>{messageAlert}</p>
+                    <div className="close__btn" onClick={handleCloseAlert}>x</div>
+                </div>}
                 <button onClick={handlePlus}>+</button>
                 <input
                     value={amount}
@@ -32,7 +45,8 @@ export default function Amount( {onCollect, amount} ) {
                     onChange={(e) => {
                         const amount = e.target.value.replace(/[^\d]/,'');
                         if (amount > 10) {
-                            console.log("You can choose max. 10 dices");
+                            setShowAlert(true);
+                            setMessageAlert("You must choose min. 1 dice");
                         } else {
                             onCollect(prevState => ({...prevState, amount}));
                         }

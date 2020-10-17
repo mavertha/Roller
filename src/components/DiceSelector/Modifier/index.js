@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Modifier.scss";
 
 export default function Modifier( {onCollect, modifier} ) {
+    const [messageAlert, setMessageAlert] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
+
     const handlePlus = () => {
         if (modifier < 10) {
             onCollect(prevState=>({...prevState, modifier: prevState.modifier + 1}));
         } else {
-            console.log("Modifier can't be higher than 10");
+            setShowAlert(true);
+            setMessageAlert("Modifier can't be higher than 10");
         }
     }
     const handleMinus = () => {
@@ -14,7 +21,8 @@ export default function Modifier( {onCollect, modifier} ) {
             onCollect(prevState => ({...prevState, modifier: prevState.modifier - 1}));
         }
         else {
-            console.log("Modifier can't be lower than -10");
+            setShowAlert(true);
+            setMessageAlert("Modifier can't be lower than -10");
         }
     }
 
@@ -22,6 +30,11 @@ export default function Modifier( {onCollect, modifier} ) {
         <div className="roller__generator__modifier">
             <span>Modifier</span>
             <div className="modifier">
+                {showAlert &&
+                <div className="alert__box">
+                    <p>{messageAlert}</p>
+                    <div className="close__btn" onClick={handleCloseAlert}>x</div>
+                </div>}
                 <button onClick={handlePlus}>+</button>
                 <input
                     value={modifier}
@@ -29,7 +42,8 @@ export default function Modifier( {onCollect, modifier} ) {
                     onChange={(e) => {
                         let modifier = e.target.value
                         if (modifier > 10 || modifier < -10 || /^[a-zA-Z]+$/.test(modifier)) {
-                            console.log("Modifier must a number between -10 and 10");
+                            setShowAlert(true);
+                            setMessageAlert("Modifier must a number between -10 and 10");
                         } else {
                             onCollect(prevState => ({...prevState, modifier}));
                         }
