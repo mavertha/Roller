@@ -10,6 +10,7 @@
 .dice {
   text-align: center;
   width: 14.2%;
+  position: relative;
 }
 
 .dice-image {
@@ -51,7 +52,52 @@
   background-image: url("dices/d100.jpg");
 }
 
-.clicked {
-  border: 1px solid $buttonsColor3;
-  border-radius: 3px;
+//@keyframes translate {
+//  0% {
+//  }
+//  100% {
+//    transform: translate(25%, 25%);
+//  }
+//}
+
+@keyframes rotate__y {
+  0% {
+  }
+  25% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(360deg);
+  }
+  75% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
+
+//@keyframes rotate__around {
+//  0% {
+//  }
+//  100% {
+//    transform: rotate(180deg);
+//  }
+//}
+
+
+@keyframes opacity {
+  0% {
+    opacity: 20%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.roller__animation {
+  animation-name: rotate__y, opacity;
+  animation-duration: 1s, 2s;
+  animation-iteration-count: 1;
+}
+
