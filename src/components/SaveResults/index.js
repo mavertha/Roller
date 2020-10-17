@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./SaveResults.scss";
 
-export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setShowSaveResult} ) {
+export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setShowSaveResult, setShowAlert, setMessageAlert} ) {
     const [userName, setUserName] = useState('');
     const [disabledSave, setDisabledSave] = useState(true);
 
@@ -19,9 +19,13 @@ export default function SaveResults( {allRolls, setAllHistory, setAllRolls, setS
         setAllHistory([...dataFromLocalStorage]);
         setAllRolls([]);
         setShowSaveResult(false);
+        setShowAlert(true);
+        setMessageAlert("Success! Your results have been saved!");
     }
     const clearLocalStorage = () => {
         localStorage.clear('history');
+        setShowAlert(true);
+        setMessageAlert("All history has been cleared");
     }
 
     return (

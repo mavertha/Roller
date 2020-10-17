@@ -1,6 +1,7 @@
 @import "./src/scss/variables";
 
 .roller__results__container {
+  position: relative;
   width: 80%;
   display: flex;
   flex-direction: column;

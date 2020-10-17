@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import SaveResults from "../../SaveResults";
 import './Results.scss';
 
 export default function Results( {handleClear, handleSave, allRolls, showSaveResult, setShowSaveResult, setAllHistory, setAllRolls, disallowSave} ) {
+    const [messageAlert, setMessageAlert] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
+
     return (
         <div className="roller__results__container">
+            {showAlert &&
+            <div className="alert__box">
+                <p>{messageAlert}</p>
+                <div className="close__btn" onClick={handleCloseAlert}>x</div>
+            </div>}
             <div className="roller__frame">
                 <h2>Results</h2>
             </div>
@@ -20,7 +31,8 @@ export default function Results( {handleClear, handleSave, allRolls, showSaveRes
                 <button onClick={handleClear}>Clear</button>
                 <button onClick={handleSave} disabled={disallowSave}>Save</button>
             </div>
-            {showSaveResult && <SaveResults allRolls={allRolls} setAllHistory={setAllHistory} setAllRolls={setAllRolls} setShowSaveResult={setShowSaveResult}/>}
+            {showSaveResult && <SaveResults allRolls={allRolls} setAllHistory={setAllHistory} setAllRolls={setAllRolls} setShowSaveResult={setShowSaveResult}
+            setShowAlert={setShowAlert} setMessageAlert={setMessageAlert}/>}
         </div>
     )
 }

@@ -19,9 +19,9 @@ function App() {
     const [showHistoryDetails, setShowHistoryDetails] = useState(false);
     const [disallowSearch, setDisallowSearch] = useState(true);
     const [disallowSave, setDisallowSave] = useState(true);
-
     const [showAlert, setShowAlert] = useState(false);
     const [messageAlert, setMessageAlert] = useState("");
+
     const handleCloseAlert = () => {
         setShowAlert(false);
     }
@@ -124,7 +124,7 @@ function App() {
                 </section>
 
                 <section className="roller__results">
-                    {!showHistoryDetails&& <ShowResult allRolls={allRolls} setAllRolls={setAllRolls} setAllHistory={setAllHistory} disallowSave={disallowSave}/>}
+                    {!showHistoryDetails&& <ShowResult allRolls={allRolls} setAllRolls={setAllRolls} setAllHistory={setAllHistory} disallowSave={disallowSave} setDisallowSave={setDisallowSave}/>}
                     {showHistoryDetails && <HistoryDetails allHistory={allHistory} onClose={setShowHistoryDetails} setDisallowSearch={setDisallowSearch}
                      setDate={setDate} setText={setText} setAllHistory={setAllHistory} dataFromLocalStorage={dataFromLocalStorage} />}
                 </section>
