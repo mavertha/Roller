@@ -85,7 +85,7 @@
 //  }
 //}
 
-@keyframes opacity {
+@keyframes opacity__change {
   0% {
     opacity: 20%;
   }
@@ -95,7 +95,7 @@
 }
 
 .roller__animation {
-  animation-name: rotate__y, opacity;
+  animation-name: rotate__y, opacity__change;
   animation-duration: 1s, 2s;
   animation-iteration-count: 1;
 }
