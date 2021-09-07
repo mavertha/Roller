@@ -3,12 +3,20 @@ import "./Dices.scss";
 
 const Dice = ({ type, onCollect }) => {
     const [newClass, setNewClass] = useState("");
+
+    const handleClick = () => {
+        onCollect(prevState=>({...prevState, type}));
+        setNewClass('roller__animation');
+        console.log("!!!!!")
+    }
+
     return (
         <div className="dice"
-            onClick={() => {
-            onCollect(prevState=>({...prevState, type}));
-            setNewClass('roller__animation');
-        }}
+        //     onClick={() => {
+        //     onCollect(prevState=>({...prevState, type}));
+        //     setNewClass('roller__animation');
+        // }}
+            onClick={handleClick}
             onAnimationEnd={() => setNewClass("")}>
             <div className={`dice-image dice-d${type} ${newClass}`} />
             <h2>d{type}</h2>
