@@ -52,14 +52,6 @@
   background-image: url("../../../images/dices/d100.jpg");
 }
 
-//@keyframes translate {
-//  0% {
-//  }
-//  100% {
-//    transform: translate(25%, 25%);
-//  }
-//}
-
 @keyframes rotate__y {
   0% {
   }
@@ -77,26 +69,20 @@
   }
 }
 
-//@keyframes rotate__around {
+//@keyframes opacity__change {
 //  0% {
+//    opacity: 20%;
 //  }
 //  100% {
-//    transform: rotate(180deg);
+//    opacity: 100%;
 //  }
 //}
 
-@keyframes opacity__change {
-  0% {
-    opacity: 20%;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-
 .roller__animation {
-  animation-name: rotate__y, opacity__change;
-  animation-duration: 1s, 2s;
+  animation-name: rotate__y;
+  //opacity__change;
+  animation-duration: 1;
+  //2s;
   animation-iteration-count: 1;
 }
 

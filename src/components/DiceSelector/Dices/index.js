@@ -9,7 +9,8 @@ const Dice = ({type, onCollect}) => {
                  onCollect(prevState => ({...prevState, type}));
                  setNewClass('roller__animation');
              }}
-             onAnimationEnd={() => setNewClass("")}>
+             onAnimationEnd={() => setNewClass("")}
+        >
             <div className={`dice-image dice-d${type} ${newClass}`}/>
             <h2>d{type}</h2>
         </div>
