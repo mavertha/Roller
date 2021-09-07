@@ -54,7 +54,7 @@
 
 @keyframes rotate__y {
   0% {
-    opacity: 20%;
+    opacity: 0.2;
   }
   25% {
     transform: rotateY(180deg);
@@ -67,7 +67,7 @@
   }
   100% {
     transform: rotateY(360deg);
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
@@ -86,6 +86,6 @@
   //animation-iteration-count: 1;
   //animation: opacity__change 2s ease 0s 1, rotate__y 1s ease 1s 1;
   animation-name: rotate__y;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-iteration-count: 1;
 }
